@@ -1,0 +1,43 @@
+﻿@model Wad.iFollow.Web.Models.FollowersModel
+
+@{
+    ViewBag.Title = "Followers Page";
+}
+
+<div style="padding-left:150px", id ="body">
+@using (Ajax.BeginForm("Follow", "Followers", new AjaxOptions { HttpMethod = "POST" , UpdateTargetId = "body"}))
+{    
+    if (Model.wallElements != null)
+    {
+        foreach (var item in Model.wallElements)
+        {
+            string elem = string.Format(@"{0}", item.id);
+            <div class ="col-md-12" style="padding:100px">
+
+             <!--The profile photo of the friend -->
+             <div class="col-md-3 ">
+                <img src="@Url.Content(@item.avatar)" class="profileFollowers" />
+             </div>
+
+             <!--The name of the friend -->
+             <div class="col-md-4">
+             @Ajax.ActionLink(@item.firstName+" "+@item.lastName, "Profile", "Wall", new {user = @elem }, new AjaxOptions { UpdateTargetId="body"}, new { @class = "profileText"})
+             </div>
+
+             <!--The option to follow the person -->
+             <div class="col-md-5">
+                 <div style="padding:15px"></div>
+                 @if(@item.isFollowed)
+                 {
+                     <button class="btn btn-primary" style="width:120px" type="submit" value="@elem" name ="submit">Unfollow</button>
+                 }
+                 else
+                 {
+                     <button class="btn btn-primary" style="width:120px" type="submit" value="@elem" name ="submit">Follow</button>
+                 }                 
+             </div>
+            </div>
+        }
+    }
+}
+</div>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6cf7dbb049ab4e7a9e5c632dc8d68276" Name="Diagram1">
+        <EntityTypeShape EntityType="ifollowdatabaseModel.comment" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifollowdatabaseModel.email" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifollowdatabaseModel.follower" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifollowdatabaseModel.image" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifollowdatabaseModel.notification" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifollowdatabaseModel.post" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifollowdatabaseModel.rating" Width="1.5" PointX="7.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifollowdatabaseModel.user" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_comments_postId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_comments_userId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_notificatons_commentId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_emails_ownerId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_followers_followedId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_followers_followerId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_images_ownerId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_posts_imageId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_notifications_ownerId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_notifications_postId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_notifications_userId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_posts_ownerId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_ratings_postId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.FK_ratings_userId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifollowdatabaseModel.sharedposts" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

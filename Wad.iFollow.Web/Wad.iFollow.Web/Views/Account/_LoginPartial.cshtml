@@ -1,0 +1,53 @@
+﻿@model Wad.iFollow.Web.Models.user
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<section id="loginForm">
+<h2>Use a local account to log in.</h2>
+@using (Html.BeginForm("Login", "Account"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.email)
+            </li>
+            <li>
+                @Html.TextBoxFor(m => m.email)
+                @Html.ValidationMessageFor(m => m.email)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.password)
+            </li>
+            <li>
+                @Html.PasswordFor(m => m.password)
+                @Html.ValidationMessageFor(m => m.password)
+            </li>
+        </ol>
+        <div class="row-fluid">
+         <button style="margin-left:60px;width:120px" class="btn btn-danger" type="submit" value="Log in">Login</button>
+        </div>
+    </fieldset>
+   
+    <p>    </p>
+    
+    <p>
+         <u>@Html.ActionLink("Register", "Register","Account")</u> if you don't have an account.
+    </p>
+    
+    <p>
+         Click <u>@Html.ActionLink("here", "Reset","Account")</u> if you forgot your password.
+    </p>
+    
+}
+</section>

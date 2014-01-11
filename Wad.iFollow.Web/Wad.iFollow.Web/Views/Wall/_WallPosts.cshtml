@@ -1,0 +1,83 @@
+﻿@model Wad.iFollow.Web.Models.WallPostsModel
+
+<div class="container">
+    @{int i=0;}
+    @foreach(var item in Model.wallElements)
+    {
+        string id = string.Format(@"myModal{0}", i);
+        i = i + 1;
+        <div class="col-md-4 col-md-offset-1" style="margin-top:0px">
+        <a data-toggle="modal" href="#@id" class="wallPostsItem">
+            <div class="thumbnails">            
+                <article class="wallThumbnail">
+                    <p class="beautifulFont" style="color: cornflowerblue; font-family: 'Arabic Typesetting'; font-size: 30px">
+                        <img src="Images/placeholderProfile.jpg" style="height: 50px;"/>
+                        @item.Author said:
+                    </p>
+                    @if(@item.rating >0)
+                    {
+                        <div style="font-family: 'Arabic Typesetting'; font-size: 30px;color:red;"><strong>@item.rating</strong>
+                            <img src="~/Images/Icons/star.png" style="height:27px;width:27px;margin-top:-10px"/>
+                        </div>
+                    }
+                    @if (@item.Path == "")
+                    {
+                        <textarea readonly="readonly" style="text-align:left; background: border-box; background-color:#eaeaea; color:firebrick; font-family:'Arabic Typesetting'; font-size: 30px; width:300px; height:auto">
+                        @item.Message
+                        </textarea>
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(@item.Path)" alt="" style="width:90%; height: 90%"/>
+                        <p class="beautifulFont" style="color: firebrick; font-family: 'Arabic Typesetting'; font-size: 30px">@item.Message</p>
+                    }
+                </article>
+            </div>
+        </a>  
+        </div>
+
+<!-- Aici este fereastra cu modalul care se deschide atunci cand dam click pe un post -->    
+            
+        <div class="modal fade" id="@id"  aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="beautifulFont" style="color: cornflowerblue; font-family: 'Arabic Typesetting'; font-size: 30px">@item.Author said: </h4>
+                        @if(@item.rating > 0 )
+                        {
+                            <div>
+                                <input  id="@item.postId" value="@item.rating" readonly="true" hidden="hidden" />
+                                <div class="rateit" data-rateit-backingfld="#@item.postId" data-rateit-min="0"  data-rateit-max="5"></div>
+                            </div>
+                        }
+                        else
+                        {   
+                            <div class="rating" id="rating">
+                                <div class="rateit" data-ratingid="@item.postId"  data-rateit-min="0"  data-rateit-max="5"></div>
+                            </div>
+                        }
+                </div>
+                <div class="modal-body">
+                    @if (@item.Path == "")
+                    {
+                        <textarea readonly="readonly" style="text-align:left; background:border-box ; background-color:#eaeaea; color:firebrick; font-family:'Arabic Typesetting'; font-size: 30px; width:300px; height:auto">
+                        @item.Message
+                        </textarea>
+                    }
+                    else
+                    {
+                        <img style="width:400px" src="@Url.Content(@item.Path)">
+                        <div class="beautifulFont" style="color: firebrick; font-family: 'Arabic Typesetting'; font-size: 30px">
+                            @item.Message
+                        </div>
+                    }      
+
+                   @Html.Partial("_Comments",item)          
+                </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

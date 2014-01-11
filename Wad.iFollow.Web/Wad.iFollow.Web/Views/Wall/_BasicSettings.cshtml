@@ -1,0 +1,39 @@
+﻿@model Wad.iFollow.Web.Models.SettingsModel
+
+<div id="body">
+    @using (Ajax.BeginForm("Save", "Settings", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "body" }))//(Html.BeginForm("Save", "Settings"))
+    {
+        <div class="col-md-1"></div>
+        <div class="col-md-11" style="padding-bottom:30px">  
+             @Html.Label("Firstname")
+             @Html.TextBoxFor(m => m.firstName, null, new { @class = "input" })
+             @Html.Label("Lastname")
+             @Html.TextBoxFor(m => m.lastName, null, new { @class = "input" })
+             @Html.Label("Country")
+             @Html.TextBoxFor(m => m.country, null, new { @class = "input" })
+             @Html.Label("City")
+             @Html.TextBoxFor(m => m.city, null, new { @class = "input" })
+             @Html.Label("Birth Date")
+           <div class=" input-append date"  id="dpYears" data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+			    <span class="add-on"><input class="input" size="14" type="text" value="12-02-2012" readonly=""></span>  
+	    </div>
+            
+        </div>        
+               
+        <div class="col-md-2"></div>
+        <div class="col-md-2" >
+            <input type="submit" class="btn btn-default" style="width:90px" value="Save">
+        </div>
+
+        <div class="col-md-2"></div>
+
+        <div class="col-md-2" >
+            <input type="reset" class="btn btn-default" style="width:90px" value="Cancel">
+        </div>            
+    }   
+</div>
+<script>
+    $(function () {
+        $("#dpYears").datepicker();
+    });
+</script>

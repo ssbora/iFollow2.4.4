@@ -1,0 +1,58 @@
+﻿@model Wad.iFollow.Web.Models.ProfileModel
+@{
+    ViewBag.Title = "Profile Page";
+}
+
+<p class="beautifulFont" style="text-align: left; font-size:40px">Posts</p>
+<div class="container">
+    @{int i=0;}
+    @foreach(var item in @Model.elements.wallElements)
+    {
+        string id = string.Format(@"myModal{0}", i);
+        i = i + 1;
+        <div class="col-md-6 col-md-offset-1">
+            <a data-toggle="modal" href="#@id">
+                @if (@item.Path == "")
+                {
+                    <textarea readonly="readonly" style="text-align:left; background:border-box ; background-color:#eaeaea; color:firebrick; font-family:'Arabic Typesetting'; font-size: 30px; width:500px; height:auto">
+                    @item.Message</textarea>
+                }
+                else
+                {
+                    <img style="width:500px; height:auto" src="@Url.Content(@item.Path)"/>
+                    <p class="beautifulFont">@item.Message</p>
+                }     
+            </a>   
+        </div>
+    
+        <!-- Aici este fereastra cu modalul care se deschide atunci cand dam click pe un post -->     
+        <div class="modal fade" id="@id"  aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="beautifulFont" style="color: cornflowerblue; font-family: 'Arabic Typesetting'; font-size: 30px">@item.Author said: </h4>
+                        <div class="rating" id="rating">
+                            <div class="rateit" id="rat" data-rateit-min="0" data-rateit-max="10"></div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        @if (@item.Path == "")
+                        {
+                            <textarea readonly="readonly" style="text-align:left; background:border-box ; background-color:#eaeaea; color:firebrick; font-family:'Arabic Typesetting'; font-size: 30px; width:300px; height:auto">
+                            @item.Message
+                            </textarea>
+                        }
+                        else
+                        {
+                            <img style="width:400px; height:auto" src="@Url.Content(@item.Path)">
+                            <div class="beautifulFont" style="color: firebrick; font-family: 'Arabic Typesetting'; font-size: 30px">
+                                @item.Message
+                            </div>
+                        }                
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

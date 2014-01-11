@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wad.iFollow.Web", "Wad.iFollow.Web\Wad.iFollow.Web.csproj", "{B935E94B-2E47-47E2-8F89-49644740D7AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B935E94B-2E47-47E2-8F89-49644740D7AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B935E94B-2E47-47E2-8F89-49644740D7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B935E94B-2E47-47E2-8F89-49644740D7AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B935E94B-2E47-47E2-8F89-49644740D7AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

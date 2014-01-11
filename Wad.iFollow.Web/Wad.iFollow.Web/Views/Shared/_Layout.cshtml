@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+    </head>
+    <body>
+        <header>
+            <div class="title">
+            <span class="i">i</span>
+            <span class="F">F</span>
+            <span class="o" style="margin-left:24px">o</span>
+            <span class="l">l</span>
+            <span class="l">l</span>
+            <span class="o">o</span>
+            <span class="w">w</span>
+            </div>
+        </header>
+        <div id="body">
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            
+        </footer>
+
+    </body>
+</html>

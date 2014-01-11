@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <script src="@Url.Content("~/Scripts/jquery-2.0.3.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery-2.0.3.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+        @Styles.Render("~/Content/themes/bootstrap")
+        @Styles.Render("~/Content/css")
+        <link rel="stylesheet" href="Content\themes\bootstrap-theme.css" />
+        <script src="@Url.Content("~/Scripts/bootstrap.js")" type="text/javascript"></script>
+        <link rel="stylesheet" href="Content\datepicker.css" />
+        <script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/wall.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery-ui-1.8.20.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.rateit.js")" type="text/javascript"></script>
+        <link rel="stylesheet" href="Content\rateit.css" />
+        <link rel="stylesheet" href="Content\font-awesome\css\font-awesome.css" />
+    </head>
+    <body>
+        <div>
+        <header class="navbar navbar-inverse navbar-fixed-top" id="headerslide">
+            <div class="navbar-inner">
+            
+                    <div class="col-md-1">
+                        <a class ="btn btn-primary" data-target=".show-header" data-toggle="collapse" href="#" id="header_btn" >
+                              <i class="fa fa-align-justify"></i>
+                        </a>
+                    </div>
+                <div class="nav-collapse collapse show-header" id="header_body">
+                        <nav>
+                            <ul class="nav pull-left">
+                                <li>
+
+                                    <a href="@Url.Action("MainPage", "Wall")" class="toolbar-wall-element"></a>
+                                    @Ajax.ActionLink(" ", "Post", "Wall", new AjaxOptions { UpdateTargetId="body"}, new { @class = "toolbar-post-element" })  
+                                    @Ajax.ActionLink(" ", "Profile", "Wall", new {user = "current" }, new AjaxOptions { UpdateTargetId = "body" }, new { @class = "toolbar-profile-element" })  
+                                    @Ajax.ActionLink(" ", "Followers", "Wall", new AjaxOptions { UpdateTargetId="body"}, new { @class = "toolbar-followers-element"})  
+                                    <a href="#" class="toolbar-notifications-element"></a>
+                                    @Ajax.ActionLink(" ", "Settings", "Wall",new AjaxOptions { UpdateTargetId="body"}, new { @class = "toolbar-settings-element"})
+                                   <!-- <a href="#" class="toolbar-about-element"></a> -->
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+        </header>
+        </div>
+
+        <div id="body">
+            @RenderBody()
+        </div>
+        <footer>
+            <!--<div class="container">iFollow</div>-->
+        </footer>
+    </body>
+</html>
+<script>
+    $('.nav a').on('click', function () {
+        $("#header_btn").click();
+    });
+</script>

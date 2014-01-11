@@ -1,0 +1,30 @@
+﻿@model Wad.iFollow.Web.Models.ResetModel
+@{
+    ViewBag.Title = "Reset";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Reset your password.</h2>
+</hgroup>
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Reset Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+            </li>
+        </ol>
+        <input type="submit" value="Submit" />
+        <input type="button" class="btn btn-default" value="Back">
+
+    </fieldset>
+  
+}
+

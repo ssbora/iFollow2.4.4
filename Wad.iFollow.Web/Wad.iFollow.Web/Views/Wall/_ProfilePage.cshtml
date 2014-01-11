@@ -1,0 +1,101 @@
+﻿@model Wad.iFollow.Web.Models.ProfileModel
+@{
+    ViewBag.Title = "Profile Page";
+}
+
+<script>
+   function readfile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#image_preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+<!--Impartim partea superioara a ecranului in col-md-7 si col-md-5-->
+<div class="row" id="details">
+        <br />
+        <div class ="col-md-2"></div>        
+        @if (@Model.isCurrentUser)
+        {
+            <div class="col-md-12" style="margin-top:0px">
+            <a data-toggle="modal" href="#uploadModal" class="col-md-3 fileupload-preview thumbnail">
+                @if(@Model.avatarPath == "")
+                {
+                    <img src="Images/placeholderProfile.jpg" style="height:auto; width:auto" />
+                }
+                else
+                {
+                    <img src="@Url.Content(@Model.avatarPath)" style="height:auto; width:auto" />
+                }
+            </a>
+            </div>
+            <div class="modal fade" id="uploadModal"  aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="beautifulFont" style="color: cornflowerblue; font-family: 'Arabic Typesetting'; font-size: 30px">What's your face?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class ="col-md-2"></div>
+                        @using (Ajax.BeginForm("SaveAvatar", "Wall", new AjaxOptions { HttpMethod = "POST" }, new { EncType = "multipart/form-data" }))
+                        {
+                            @Html.TextBoxFor(m => m.File, null, new { type = "file", id = "File", @class = "input-file", onchange = "readfile(this);" })        
+                            <div class ="col-md-3"></div>
+                            <div class="row">
+                                <img id="image_preview" src="Images/placeholderProfile.jpg" class="col-md-3 fileupload-preview thumbnail" style="height:auto; width:auto"/>
+                            </div>
+                            <div class ="col-md-10"></div>
+                            <button class="btn btn-primary" type="submit">Save</button>   
+                        }                        
+                    </div>        
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-3" style="margin-top:0px">
+            <img src="Images/placeholderProfile.jpg" style="height:auto; width:auto" />
+            </div>
+        }
+        
+        <div class ="col-md-1"></div> 
+        <textarea class="col-md-3"  readonly="readonly" rows="3" style="background-color:#eaeaea; text-align:left; font-size:medium " placeholder="@Model.userName says: Hello, world!"></textarea>
+        <div class ="col-md-12" style="height:100px"></div>
+    
+        <div class ="col-md-5">
+            <div class ="col-md-2"></div> 
+            @Ajax.ActionLink(@Model.postsCount + " Posts", "ViewPosts", "Wall", new { user = @Model.userId }, new AjaxOptions { UpdateTargetId = "bodyPartial" }, new { @class = "btn btn-primary" })  
+        </div>
+        
+        <div class ="col-md-1" style="height:40px"></div>
+        <div class ="col-md-5">
+            <div class ="col-md-2"></div> 
+            @Ajax.ActionLink(@Model.followersCount + " Followers", "ViewFollowers", "Wall", new { user = @Model.userId }, new AjaxOptions { UpdateTargetId = "bodyPartial" }, new { @class = "btn btn-primary" })  
+        </div>
+            
+        <div class ="col-md-1" style="height:40px"></div>
+        <div class ="col-md-5">
+            <div class ="col-md-2"></div> 
+            @Ajax.ActionLink(@Model.followedCount + " Following", "ViewFollowed", "Wall", new { user = @Model.userId }, new AjaxOptions { UpdateTargetId = "bodyPartial" }, new { @class = "btn btn-primary" })  
+        </div>
+</div>
+
+<div class="col-md-2" style="height:30px"></div>
+<div id="bodyPartial">
+    @if (@Model.postsCount != 0)
+    {
+        @Html.Partial("~/Views/Wall/_ProfilePagePosts.cshtml", @Model)
+    }
+    else
+    {
+        @Html.Partial("~/Views/Shared/_NoPosts.cshtml")
+    }
+</div>

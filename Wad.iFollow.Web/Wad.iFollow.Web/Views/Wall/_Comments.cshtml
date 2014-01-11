@@ -1,0 +1,33 @@
+﻿@model Wad.iFollow.Web.Models.WallData
+<div id="comm-@Model.postId"></div>
+@using (Html.BeginForm("SetComment","Wall"))
+{
+    @Html.HiddenFor(m=>m.postId)
+    @Html.TextAreaFor(x => x.currentComment)
+    <input type="submit" value="OK" />
+}
+
+<script>
+   /* var txt = '#' + $("textarea").attr('id');
+    $('textarea').keypress(function (event) {
+        debugger;
+        var currentid = '#'+$("form").attr('id');
+        if (event.which == 13) {
+            event.preventDefault();
+            $(currentid).submit();
+        }
+});*/
+
+    function append(object)
+    {
+        $('#comm').append(object.message);
+    }
+
+/*$('#comment').keyup(function () {
+    var left = 200 - $(this).val().length;
+    if (left < 0) {
+        left = 0;
+    }
+    $('#counter').text('Characters left: ' + left);
+});*/
+</script>

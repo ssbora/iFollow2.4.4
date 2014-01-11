@@ -1,0 +1,56 @@
+﻿@model Wad.iFollow.Web.Models.UploadFileModel
+@{
+    ViewBag.Title = "Post Page";
+}
+
+<!--Add some javascript for the functionality of CHOOSE FILE-->
+
+<script>
+   function readfile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#image_preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+@using (Html.BeginForm("Upload", "Post", FormMethod.Post, new { EncType = "multipart/form-data"}))
+{
+    @Html.ValidationSummary(true)
+    <br />
+    <div class ="col-md-12" style="height:90px"></div> <!--Empty div to leave blank space-->
+    <!--Impartim ecranul in col-md-7 si col-md-5-->
+    <div data-width="760">
+        <div >
+            <div class="row">
+                <div class="col-md-7">
+                <div class ="col-md-6"></div> <!--We introduce this to place the next div in the center -->
+                <img id="image_preview" src="Images/placeholder.png" class="col-md-6 fileupload-preview thumbnail" style="height: 300px;"/>
+                <div class ="col-md-6"></div> <!--We introduce this to place the next div in the center -->
+                <p>
+                @Html.TextAreaFor(m => m.Message, new {@class="col-md-6", rows="4", style="text-align:left; font-size:medium ", placeholder="Write a comment..." })
+                @Html.ValidationMessageFor(m => m.Message)
+                </p>
+            </div>
+
+            <div class="col-md-5">
+                <!--Choose File button -->
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.File, null, new { type="file", id="File", @class="input-file", onchange="readfile(this);"})
+                    @Html.ValidationMessageFor( m => m.File )
+                    <div class ="col-md-12" style="height:295px"></div> <!--Empty div to leave blank space-->
+                    <p><input type="button" class="col-md-6 btn btn-default" style="width:120px" value="Cancel"></p>
+                    <div class ="col-md-12" style="height:40px"></div> <!--Empty div to leave blank space-->
+                    <p><input type="submit" class="col-md-6 btn btn-default" style="width:120px" value="Post"></p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+}
+

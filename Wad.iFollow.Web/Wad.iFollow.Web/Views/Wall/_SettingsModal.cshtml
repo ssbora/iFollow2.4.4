@@ -1,0 +1,20 @@
+﻿@model Wad.iFollow.Web.Models.SettingsModel
+
+<div class="container" style="padding:50px ;background-image: url()" >
+    <div class="col-md-3"></div>
+   
+    <div class="col-md-6 " style="padding:20px; border:groove; border-radius:10px;  ">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
+            <li><a href="#wallsettings" data-toggle="tab"">Wall</a></li>
+        </ul>
+        <div class="tab-content" style="padding:20px">
+                <div id="basic" class="tab-pane active">
+                    @Html.Partial("~/Views/Wall/_BasicSettings.cshtml", @Model) <!--model to add as parameter-->
+                </div>
+                <div id="wallsettings" class="tab-pane">
+                    @Html.Partial("~/Views/Wall/_AdvancedSettings.cshtml", @Model) <!--model to add as parameter-->
+                </div>
+        </div>
+    </div>
+</div>
